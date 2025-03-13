@@ -19,3 +19,8 @@ TextStyle headerText = TextStyle(
   fontSize: 15,
   color: Colors.redAccent,
 );
+TextStyle normalText = TextStyle(
+  fontFamily: "Sigmar",
+  fontSize: 12,
+  color: Colors.black,
+);

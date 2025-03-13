@@ -14,6 +14,7 @@ class _DriverPageState extends State<DriverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F4F0),
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text("Drivers", style: titleStyleText),
@@ -70,14 +71,56 @@ class _DriverPageState extends State<DriverPage> {
                     scrollDirection: Axis.vertical,
                     itemCount: state.season.championships?.length ?? 0,
                     itemBuilder: (context, index) {
-                      return Container(
-                        child: ListTile(
-                          title: Text(
-                            state.season.championships?[index].year
-                                    .toString() ??
-                                "Null",
-                            style: headerText,
-                            // state.season.championships!.length.toString(),
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white,
+                          ),
+                          height: 80,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    state.season.championships?[index].year
+                                            .toString() ??
+                                        "Null",
+                                    style: headerText,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(
+                                          width: 2,
+                                          color: Colors.grey,
+                                          style: BorderStyle.solid,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        state
+                                                .season
+                                                .championships?[index]
+                                                .championshipName ??
+                                            " ",
+                                        style: normalText,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
