@@ -1,6 +1,8 @@
+import 'package:f1_app/bloc/standing/standing_bloc.dart';
 import 'package:f1_app/bloc/season/season_bloc.dart';
 import 'package:f1_app/pages/driver/driverpage.dart';
 import 'package:f1_app/pages/homepage.dart';
+import 'package:f1_app/pages/standings/mainStanding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => SeasonBloc())],
+      providers: [
+        BlocProvider(create: (context) => SeasonBloc()),
+        BlocProvider(create: (context) => StandingBloc()),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -25,6 +30,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Homepage(),
           '/driver': (context) => DriverPage(),
+          '/standings': (context) => StadingsDriverYearMain(),
         },
       ),
     );

@@ -39,6 +39,7 @@ dependencies:
   bloc: ^9.0.0
   meta: ^1.16.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -89,9 +90,14 @@ flutter:
           weight: 600
         - asset: assets/fonts/Oswald/Oswald-Bold.ttf
           weight: 700
+          
     - family: Rubik Dirt
       fonts:
         - asset: assets/fonts/Rubik Dirt/RubikDirt-Regular.ttf
+
+    - family: Black Ops One
+      fonts:
+        - asset: assets/fonts/Black Ops One/BlackOpsOne-Regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
