@@ -22,7 +22,7 @@ final class StandingSucces extends StandingState {
 }
 
 final class StandingSuccesTeam extends StandingState {
-  final TeamModel team;
+  final StandingsTeams team;
 
   StandingSuccesTeam(this.team);
 

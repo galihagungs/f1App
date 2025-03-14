@@ -1,7 +1,10 @@
+import 'package:f1_app/bloc/standing/standing_bloc.dart';
 import 'package:f1_app/pages/homepage.dart';
 import 'package:f1_app/pages/standings/driverStanding.dart';
+import 'package:f1_app/pages/standings/teamStanding.dart';
 import 'package:f1_app/style/styling.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StadingsDriverYearMain extends StatefulWidget {
   const StadingsDriverYearMain({super.key});
@@ -28,12 +31,24 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
 
   @override
   Widget build(BuildContext context) {
+    final yearsad = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffee0000),
         title: Text("STANDINGS", style: titleStyleText),
 
         bottom: TabBar(
+          onTap: (value) {
+            if (value == 0) {
+              context.read<StandingBloc>().add(
+                GetYearSeasonDriver(year: yearsad),
+              );
+            } else if (value == 1) {
+              context.read<StandingBloc>().add(
+                GetYearSeasonTeam(year: yearsad),
+              );
+            }
+          },
           controller: _tabController,
           labelColor: Colors.white,
           indicatorColor: Colors.white,
@@ -50,7 +65,7 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
         children: const <Widget>[
           Driverstanding(),
           // Homepage(),
-          Center(child: Text("It's rainy here")),
+          TeamStanding(),
           Center(child: Text("It's sunny here")),
         ],
       ),

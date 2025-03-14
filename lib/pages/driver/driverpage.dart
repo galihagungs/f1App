@@ -218,7 +218,15 @@ class _DriverPageState extends State<DriverPage> {
                                                 .year!,
                                       ),
                                     );
-                                    Navigator.pushNamed(context, '/standings');
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/standings',
+                                      arguments:
+                                          state
+                                              .season
+                                              .championships![index]
+                                              .year!,
+                                    );
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
