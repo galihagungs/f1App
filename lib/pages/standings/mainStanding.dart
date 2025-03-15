@@ -1,6 +1,6 @@
 import 'package:f1_app/bloc/standing/standing_bloc.dart';
-import 'package:f1_app/pages/homepage.dart';
 import 'package:f1_app/pages/standings/driverStanding.dart';
+import 'package:f1_app/pages/standings/raceresult.dart';
 import 'package:f1_app/pages/standings/teamStanding.dart';
 import 'package:f1_app/style/styling.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -35,8 +35,17 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffee0000),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              context.read<StandingBloc>().add(LastYearChamp());
+            },
+            icon: Icon(Icons.output, color: Colors.white),
+          ),
+        ],
         title: Text("STANDINGS", style: titleStyleText),
-
         bottom: TabBar(
           onTap: (value) {
             if (value == 0) {
@@ -48,6 +57,11 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
                 GetYearSeasonTeam(year: yearsad),
               );
             }
+            // else if (value == 2) {
+            //   context.read<StandingBloc>().add(
+            //     GetYearSeasonRace(year: yearsad),
+            //   );
+            // }
           },
           controller: _tabController,
           labelColor: Colors.white,
@@ -56,7 +70,7 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
           tabs: const <Widget>[
             Tab(child: Text("Driver")),
             Tab(child: Text("Teams")),
-            Tab(child: Text("Race Result")),
+            // Tab(child: Text("Race Result")),
           ],
         ),
       ),
@@ -66,7 +80,7 @@ class _StadingsDriverYearMainState extends State<StadingsDriverYearMain>
           Driverstanding(),
           // Homepage(),
           TeamStanding(),
-          Center(child: Text("It's sunny here")),
+          // RaceResult(),
         ],
       ),
     );

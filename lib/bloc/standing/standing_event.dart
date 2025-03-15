@@ -15,3 +15,8 @@ class GetYearSeasonTeam extends StandingEvent {
   final int year;
   GetYearSeasonTeam({required this.year});
 }
+
+class GetYearSeasonRace extends StandingEvent {
+  final int year;
+  GetYearSeasonRace({required this.year});
+}

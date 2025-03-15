@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:f1_app/model/Standings.dart';
+import 'package:f1_app/model/raceresult.dart';
 import 'package:f1_app/model/standingsteam.dart';
 import 'package:f1_app/service/api/f1.dart';
 import 'package:meta/meta.dart';
@@ -32,6 +31,14 @@ class StandingBloc extends Bloc<StandingEvent, StandingState> {
         emit(StandingLoading());
         final data = await F1Api().getTeamStandingbySeason(event.year);
         emit(StandingSuccesTeam(data));
+      } else if (event is GetYearSeasonRace) {
+        emit(StandingLoading());
+        final data = await F1Api().getResultRacebySeason(event.year);
+        if (data.total == 0) {
+          emit(StandingFailed("dsadsa"));
+        } else {
+          emit(StandingSuccesRace(data));
+        }
       }
     });
   }

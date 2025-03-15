@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:f1_app/model/Standings.dart';
+import 'package:f1_app/model/raceresult.dart';
 import 'package:f1_app/model/season.dart';
 import 'package:f1_app/model/standingsteam.dart';
 import 'package:f1_app/service/url.dart';
@@ -36,12 +37,22 @@ class F1Api {
     var client = http.Client();
     var uri = Uri.parse("${UrlData.url}/$year/constructors-championship");
     var res = await client.get(uri);
-    print(res.body);
+    //print(res.body);
 
     if (res.statusCode == 200) {
       return StandingsTeams.fromJson(jsonDecode(utf8.decode(res.bodyBytes)));
     }
 
     return StandingsTeams();
+  }
+
+  Future<ResultRace> getResultRacebySeason(int year) async {
+    var client = http.Client();
+    var uri = Uri.parse("${UrlData.url}/$year");
+    var res = await client.get(uri);
+    if (res.statusCode == 200) {
+      return ResultRace.fromJson(jsonDecode(utf8.decode(res.bodyBytes)));
+    }
+    return ResultRace();
   }
 }

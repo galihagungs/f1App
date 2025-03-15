@@ -1,6 +1,7 @@
 import 'package:f1_app/bloc/standing/standing_bloc.dart';
 import 'package:f1_app/style/styling.dart';
 import 'package:f1_app/widget/flagNation.dart';
+import 'package:f1_app/widget/teamLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,7 @@ class _TeamStandingState extends State<TeamStanding> {
         builder: (context, state) {
           if (state is StandingLoading) {
             return Center(
-              child: CircularProgressIndicator(color: Colors.white),
+              child: CircularProgressIndicator(color: Colors.black),
             );
           } else if (state is StandingSuccesTeam) {
             return ListView.builder(
@@ -28,7 +29,7 @@ class _TeamStandingState extends State<TeamStanding> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 80,
+                    height: 110,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
@@ -40,7 +41,10 @@ class _TeamStandingState extends State<TeamStanding> {
                         right: 16,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 10,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -50,39 +54,57 @@ class _TeamStandingState extends State<TeamStanding> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(
-                                        "${state.team.constructorsChampionship?[index].team?.teamName} ",
-                                        style: normalTextBold16,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      flagNation(
+                                      teamLogos(
                                         state
-                                            .team
-                                            .constructorsChampionship![index]
-                                            .team!
-                                            .country
-                                            .toString(),
-                                        15,
+                                                .team
+                                                .constructorsChampionship?[index]
+                                                .team
+                                                ?.teamName
+                                                ?.toString() ??
+                                            'Unknown',
+                                        35,
                                       ),
                                       SizedBox(width: 10),
-                                      Text(
-                                        state
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${state.team.constructorsChampionship?[index].team?.teamName} ",
+                                            style: normalTextBold16,
+                                          ),
+                                          Row(
+                                            children: [
+                                              flagNation(
+                                                state
                                                     .team
-                                                    .constructorsChampionship?[index]
-                                                    .team
-                                                    ?.country ==
-                                                null
-                                            ? "0"
-                                            : state
-                                                .team
-                                                .constructorsChampionship![index]
-                                                .team!
-                                                .country
-                                                .toString(),
-                                        style: normalTextBold,
+                                                    .constructorsChampionship![index]
+                                                    .team!
+                                                    .country
+                                                    .toString(),
+                                                15,
+                                              ),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                state
+                                                            .team
+                                                            .constructorsChampionship?[index]
+                                                            .team
+                                                            ?.country
+                                                            .toString() ==
+                                                        "null"
+                                                    ? "0"
+                                                    : state
+                                                        .team
+                                                        .constructorsChampionship![index]
+                                                        .team!
+                                                        .country
+                                                        .toString(),
+                                                style: normalTextBold,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),

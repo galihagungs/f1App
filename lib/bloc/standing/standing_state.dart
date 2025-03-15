@@ -28,3 +28,11 @@ final class StandingSuccesTeam extends StandingState {
 
   List<Object> get data => [team];
 }
+
+final class StandingSuccesRace extends StandingState {
+  final ResultRace race;
+
+  StandingSuccesRace(this.race);
+
+  List<Object> get data => [race];
+}

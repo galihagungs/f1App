@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
 Image flagNation(String nameNegara, double ukuran) {
-  if (nameNegara == "Germany" || nameNegara == "germany") {
-    return Image.asset("assets/images/germany.png", width: ukuran);
-  } else if (nameNegara == "Italy" || nameNegara == "Italian") {
-    return Image.asset("assets/images/italy.png", width: ukuran);
-  } else if (nameNegara == "Great Britain" || nameNegara == "British") {
-    return Image.asset("assets/images/uk.png", width: ukuran);
-  } else if (nameNegara == "Austria") {
-    return Image.asset("assets/images/austria.png", width: ukuran);
-  } else if (nameNegara == "Swiss" || nameNegara == "Switzerland") {
-    return Image.asset("assets/images/swiss.png", width: ukuran);
-  } else if (nameNegara == "United States") {
-    return Image.asset("assets/images/usa.png", width: ukuran);
-  } else if (nameNegara == "France" || nameNegara == "French") {
-    return Image.asset("assets/images/france.png", width: ukuran);
-  } else if (nameNegara == "Irish") {
-    return Image.asset("assets/images/irleand.png", width: ukuran);
+  switch (nameNegara.toLowerCase()) {
+    case "germany":
+      return Image.asset("assets/images/nation/germany.png", width: ukuran);
+    case "italy":
+    case "italian":
+      return Image.asset("assets/images/nation/italy.png", width: ukuran);
+    case "great britain":
+    case "british":
+      return Image.asset("assets/images/nation/uk.png", width: ukuran);
+    case "austria":
+      return Image.asset("assets/images/nation/austria.png", width: ukuran);
+    case "swiss":
+    case "switzerland":
+      return Image.asset("assets/images/nation/swiss.png", width: ukuran);
+    case "united states":
+      return Image.asset("assets/images/nation/usa.png", width: ukuran);
+    case "france":
+    case "french":
+      return Image.asset("assets/images/nation/france.png", width: ukuran);
+    case "irish":
+      return Image.asset("assets/images/nation/irleand.png", width: ukuran);
+    case "indian":
+      return Image.asset("assets/images/nation/india.png", width: ukuran);
+    default:
+      return Image.asset("assets/images/nation/whitecricle.png", width: ukuran);
   }
-  return Image.asset("assets/images/germany.png", width: ukuran);
 }
